@@ -13,8 +13,8 @@ public class DataAdder {
 
 	public static void main(String[] args) throws SQLException, Exception {
 		
-		String loadTestNumber = args[0];
-		String loadTestDuration = args[1];
+		String loadTestNumber = "1947";//args[0];
+		String loadTestDuration = "28800";//args[1];
 		String currDir = System.getProperty("user.dir").toString();
 
 		String AggregateReportPath = currDir+"\\"+loadTestNumber+"\\AggregateReport";
@@ -24,10 +24,14 @@ public class DataAdder {
 		Pattern prodName = Pattern.compile(regex);
 		Matcher prodNameFound = null;
 		String tempFile = "";
-		Statement s = Admin.connect().createStatement();
 		
+		Statement s = Admin.connect().createStatement();
+
 		File AggregateReportFolder = new File(AggregateReportPath);
 		File[] AggregateReportFileList = AggregateReportFolder.listFiles();
+		
+		File ResponseTimeFolder = new File(ResponseTimePath);
+		File[] ResponseTimeFileList = ResponseTimeFolder.listFiles();
 		
 		for(int i =0; i < AggregateReportFileList.length;i++)
 		{
@@ -43,6 +47,24 @@ public class DataAdder {
 				}
             }
 		}
+		
+		
+		for(int i =0; i < ResponseTimeFileList.length;i++)
+		{
+			tempFile=ResponseTimeFileList[i].getName();
+			prodNameFound = prodName.matcher(tempFile);
+            if(prodNameFound.find()) {
+            	try {
+            		DatabaseAdder.addToDb("ResponseTime",ResponseTimePath,prodNameFound.group(1),loadTestNumber,loadTestDuration,s);
+//            		System.out.println(prodNameFound.group(1));	
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, e);
+					System.exit(0);
+				}
+            }
+		}
+		
+		
 		JOptionPane.showMessageDialog(null, "Hurray!!! Results were successfully added!");
 	}
 

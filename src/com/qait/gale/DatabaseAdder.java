@@ -16,6 +16,7 @@ public class DatabaseAdder {
 	    String[] dataInLine;
         FileReader fileReader = new FileReader(tempFileFullPath);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
+        
         while ((line = bufferedReader.readLine()) != null) {
         	
         	if(line.startsWith("sampler_label"))
@@ -30,6 +31,11 @@ public class DatabaseAdder {
         			   +"'"+dataInLine[0]+"','"+dataInLine[1]+"','"+dataInLine[2]+"','"+dataInLine[3]
         			   +"','"+dataInLine[4]+"','"+dataInLine[5]+"','"+dataInLine[6]+"','"+dataInLine[7]
         			   +"','"+dataInLine[8]+"','"+dataInLine[9]+"','"+prodName+"','"+loadTestNo+"','"+loadTestDuration
+        	   		   + "')");
+        	
+        	if(type.equals("ResponseTime"))
+        	   x = s.executeUpdate("insert into response_time_graph values("
+        			   +"'"+dataInLine[0]+"','"+dataInLine[1]+"','"+prodName+"','"+loadTestNo
         	   		   + "')");
 //        	System.out.println(dataInLine[0]);
         }	
