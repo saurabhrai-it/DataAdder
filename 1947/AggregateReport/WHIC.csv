@@ -1,0 +1,5 @@
+sampler_label,aggregate_report_count,average,aggregate_report_median,aggregate_report_90%_line,aggregate_report_min,aggregate_report_max,aggregate_report_error%,aggregate_report_rate,aggregate_report_bandwidth,aggregate_report_stddev
+Dummy Sampler 1,1129,567,583,913,100,999,0.00%,18.2,2.0,257.75
+Dummy Sampler 2,1111,555,571,911,102,998,100.00%,18.2,2.0,261.58
+Dummy Sampler 3,1091,536,534,903,100,999,0.00%,18.1,2.0,265.92
+TOTAL,3331,553,563,910,100,999,33.35%,53.7,6.0,262.03
