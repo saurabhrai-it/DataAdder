@@ -1,0 +1,5 @@
+sampler_label,aggregate_report_count,average,aggregate_report_median,aggregate_report_90%_line,aggregate_report_min,aggregate_report_max,aggregate_report_error%,aggregate_report_rate,aggregate_report_bandwidth,aggregate_report_stddev
+Dummy  1,2500,545,542,917,100,999,0.00%,19.2,2.1,263.92
+saurabh 2,2500,546,537,907,99,1000,100.00%,19.1,2.1,260.02
+Dummy qwertyui 3,2500,540,535,907,100,1000,0.00%,19.1,2.1,261.65
+TOTAL,7500,544,537,910,99,1000,33.33%,56.9,6.3,261.88

@@ -13,8 +13,8 @@ public class DataAdder {
 
 	public static void main(String[] args) throws SQLException, Exception {
 		
-		String loadTestNumber = "1947";//args[0];
-		String loadTestDuration = "28800";//args[1];
+		String loadTestNumber = "2148";//args[0];
+		String loadTestDuration = "7200";//args[1];
 		String currDir = System.getProperty("user.dir").toString();
 
 		String AggregateReportPath = currDir+"\\"+loadTestNumber+"\\AggregateReport";
