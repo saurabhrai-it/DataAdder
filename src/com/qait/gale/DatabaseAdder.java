@@ -5,10 +5,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DatabaseAdder {
 	
-	static void addToDb(String type,String prodLoc, String prodName, String loadTestNo, String loadTestDuration, Statement s) throws IOException, SQLException{
+	static void addToDb(String type,String prodLoc, String prodName, String loadTestNo, String loadTestDuration, Statement s) throws IOException, SQLException, ParseException{
 		
 		String tempFileFullPath =prodLoc+"\\"+prodName+".csv";
 		int x;
@@ -16,6 +20,10 @@ public class DatabaseAdder {
 	    String[] dataInLine;
         FileReader fileReader = new FileReader(tempFileFullPath);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
+        
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date dateWithoutTime = sdf.parse(sdf.format(new Date()));
+        String output = sdf.format(dateWithoutTime);
         
         while ((line = bufferedReader.readLine()) != null) {
         	
@@ -33,10 +41,14 @@ public class DatabaseAdder {
         			   +"','"+dataInLine[8]+"','"+dataInLine[9]+"','"+prodName+"','"+loadTestNo+"','"+loadTestDuration
         	   		   + "')");
         	
-        	if(type.equals("ResponseTime"))
-        	   x = s.executeUpdate("insert into response_time_graph values("
-        			   +"'"+dataInLine[0]+"','"+dataInLine[1]+"','"+prodName+"','"+loadTestNo
+        	if(type.equals("ResponseTime")){
+        	   
+        		
+        		x = s.executeUpdate("insert into response_time_graph values("
+        			   +"'"+output+" "+dataInLine[0]+"','"+dataInLine[1]+"','"+prodName+"','"+loadTestNo
         	   		   + "')");
+        		
+        	}
 //        	System.out.println(dataInLine[0]);
         }	
         bufferedReader.close();
