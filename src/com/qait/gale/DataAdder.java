@@ -13,8 +13,9 @@ public class DataAdder {
 
 	public static void main(String[] args) throws SQLException, Exception {
 		
-		String loadTestNumber = "2148";//args[0];
-		String loadTestDuration = "7200";//args[1];
+		String loadTestNumber = args[0];
+		String loadTestDuration = args[1];
+		String loadTestDate = args[2];
 		String currDir = System.getProperty("user.dir").toString();
 
 		String AggregateReportPath = currDir+"\\"+loadTestNumber+"\\AggregateReport";
@@ -39,8 +40,7 @@ public class DataAdder {
 			prodNameFound = prodName.matcher(tempFile);
             if(prodNameFound.find()) {
             	try {
-            		DatabaseAdder.addToDb("AggregateReport",AggregateReportPath,prodNameFound.group(1),loadTestNumber,loadTestDuration,s);
-//            		System.out.println(prodNameFound.group(1));	
+            		DatabaseAdder.addToDb("AggregateReport",AggregateReportPath,prodNameFound.group(1),loadTestNumber,loadTestDuration,loadTestDate,s);
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, e);
 					System.exit(0);
@@ -55,7 +55,7 @@ public class DataAdder {
 			prodNameFound = prodName.matcher(tempFile);
             if(prodNameFound.find()) {
             	try {
-            		DatabaseAdder.addToDb("ResponseTime",ResponseTimePath,prodNameFound.group(1),loadTestNumber,loadTestDuration,s);
+            		DatabaseAdder.addToDb("ResponseTime",ResponseTimePath,prodNameFound.group(1),loadTestNumber,loadTestDuration,loadTestDate,s);
 //            		System.out.println(prodNameFound.group(1));	
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, e);

@@ -12,7 +12,7 @@ import java.util.Date;
 
 public class DatabaseAdder {
 	
-	static void addToDb(String type,String prodLoc, String prodName, String loadTestNo, String loadTestDuration, Statement s) throws IOException, SQLException, ParseException{
+	static void addToDb(String type,String prodLoc, String prodName, String loadTestNo, String loadTestDuration,String loadTestDate, Statement s) throws IOException, SQLException, ParseException{
 		
 		String tempFileFullPath =prodLoc+"\\"+prodName+".csv";
 		int x;
@@ -42,14 +42,12 @@ public class DatabaseAdder {
         	   		   + "')");
         	
         	if(type.equals("ResponseTime")){
-        	   
         		
         		x = s.executeUpdate("insert into response_time_graph values("
-        			   +"'"+output+" "+dataInLine[0]+"','"+dataInLine[1]+"','"+prodName+"','"+loadTestNo
+        			   +"'"+loadTestDate+" "+dataInLine[0]+"','"+dataInLine[1]+"','"+prodName+"','"+loadTestNo
         	   		   + "')");
         		
         	}
-//        	System.out.println(dataInLine[0]);
         }	
         bufferedReader.close();
         fileReader.close();
